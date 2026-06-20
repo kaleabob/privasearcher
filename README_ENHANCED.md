@@ -55,6 +55,13 @@ python3 server.py
 4. Add secret `SERPER_API_KEY` (optional, from serper.dev)
 5. Deploy!
 
+## Deploy on GitHub Pages
+1. Push this repository to GitHub.
+2. Enable GitHub Pages in repository settings and publish the `gh-pages` branch with root `/`.
+3. The workflow file `.github/workflows/deploy-pages.yml` will publish the static homepage automatically from `main`.
+4. The `index.html` homepage is static and can be hosted directly, while `app.html` still requires a backend API.
+5. Use `?api_base=https://your-backend.example.com` to connect the static frontend to an external backend.
+
 ### Production with Gunicorn
 ```bash
 gunicorn server:app --bind 0.0.0.0:8000 --workers 4

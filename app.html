@@ -532,11 +532,22 @@ function getModelConfig(){
 // ═══════════════════════════════════════════════════
 // SEARCH — uses local Python backend (DDGS API)
 // ═══════════════════════════════════════════════════
-// Detect API base: same origin if served by backend, otherwise try localhost
+// Detect API base: same origin if served by backend, otherwise try configured backend or localhost
 var API_BASE = "";  // Empty = same origin (when served by server.py)
-// If opening the HTML file directly (file://), point to local server:
-if (window.location.protocol === "file:") {
+function getQueryParam(name) {
+  var params = new URLSearchParams(window.location.search);
+  return params.get(name) || "";
+}
+var configuredBackend = getQueryParam("api_base") || getQueryParam("backend") || localStorage.getItem("privasearch_api_base") || "";
+if (configuredBackend) {
+  configuredBackend = configuredBackend.replace(/\/+$|\s+$/g, "");
+  API_BASE = configuredBackend;
+}
+if (!API_BASE && window.location.protocol === "file:") {
   API_BASE = "http://localhost:8888";
+}
+if (configuredBackend) {
+  try { localStorage.setItem("privasearch_api_base", API_BASE); } catch (e) {}
 }
 
 function doSearch(tab,q){
@@ -566,7 +577,7 @@ function doSearch(tab,q){
     }
   }).catch(function(e){
     ld.classList.remove("show");
-    rl.innerHTML='<div style="color:var(--muted);text-align:center;padding:2rem"><i class="fa-solid fa-triangle-exclamation" style="font-size:2rem;color:var(--acc4);display:block;margin-bottom:1rem"></i>Search failed — backend server not reachable.<br><br><span style="font-size:.75rem;color:var(--muted2)">Run locally: <code style="background:var(--s1);padding:4px 8px;border-radius:4px">python3 server.py</code><br>Or deploy the backend to Render/Railway</span></div>';
+    rl.innerHTML='<div style="color:var(--muted);text-align:center;padding:2rem"><i class="fa-solid fa-triangle-exclamation" style="font-size:2rem;color:var(--acc4);display:block;margin-bottom:1rem"></i>Search failed — backend server not reachable.<br><br><span style="font-size:.75rem;color:var(--muted2)">Run locally: <code style="background:var(--s1);padding:4px 8px;border-radius:4px">python3 server.py</code><br>Or host the backend separately and open this page with <code>?api_base=https://your-backend.example.com</code></span></div>';
   });
 }
 
