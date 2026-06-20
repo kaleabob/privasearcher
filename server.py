@@ -231,9 +231,24 @@ def apply_cors(response):
 def index():
     return send_from_directory(BASE_DIR, "index.html")
 
+@app.route("/app.html")
+def app_page():
+    return send_from_directory(BASE_DIR, "app.html")
+
+@app.route("/privacy.html")
+def privacy_page():
+    return send_from_directory(BASE_DIR, "privacy.html")
+
+@app.route("/api.html")
+def api_page():
+    return send_from_directory(BASE_DIR, "api.html")
+
 @app.route("/<path:path>")
 def static_files(path):
-    return send_from_directory(BASE_DIR, path)
+    try:
+        return send_from_directory(BASE_DIR, path)
+    except:
+        return send_from_directory(BASE_DIR, "index.html")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8888))
