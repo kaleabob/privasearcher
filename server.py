@@ -119,14 +119,14 @@ def search_api():
                         "provider": "Google (Serper)"
                     }
             
-            ddgs_kwargs = {"backend": "api"}
+            ddgs_kwargs = {}
             if ss and ss != "off":
                 ddgs_kwargs["safesearch"] = "on" if ss == "moderate" else "strict"
             
             if engine == "bing":
-                results = DDGS(**ddgs_kwargs).text(q_clean, max_results=20, backend="bing")
+                results = DDGS().text(q_clean, max_results=20, backend="bing", **ddgs_kwargs)
             else:
-                results = DDGS(**ddgs_kwargs).text(q_clean, max_results=20)
+                results = DDGS().text(q_clean, max_results=20, **ddgs_kwargs)
             
             mapper = lambda r: {"title": r.get("title", ""), "link": r.get("href", ""), "snippet": r.get("body", "")}
             return {
@@ -153,7 +153,7 @@ def images_api():
             if ss and ss != "off":
                 ddgs_kwargs["safesearch"] = "on" if ss == "moderate" else "strict"
             
-            results = DDGS(**ddgs_kwargs).images(q, max_results=20)
+            results = DDGS().images(q, max_results=20, **ddgs_kwargs)
             mapper = lambda r: {"title": r.get("title", ""), "link": r.get("url", ""), "imageUrl": r.get("image", "")}
             return {
                 "organic_results": normalize_results(results, q, mapper, 20),
