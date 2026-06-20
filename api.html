@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation - PrivaSearch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0e27;
+      --s1: #12192f;
+      --s2: #1a2445;
+      --acc: #3b82f6;
+      --acc2: #10b981;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --font: 'Inter', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+    header {
+      background: rgba(10, 14, 39, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .logo i { color: var(--acc); font-size: 1.5rem; }
+    
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 2rem;
+    }
+    
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+    .sidebar h3 {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.5rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+    .sidebar a:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--acc);
+    }
+    
+    .content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .content > p:first-of-type {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--acc);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    p {
+      margin-bottom: 1rem;
+      color: var(--muted);
+    }
+    .endpoint {
+      background: var(--s2);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .method {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-family: var(--mono);
+      margin-right: 0.5rem;
+    }
+    .method.get { background: rgba(16, 185, 129, 0.2); color: var(--acc2); }
+    .endpoint-url {
+      font-family: var(--mono);
+      background: var(--s1);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 0.5rem 0;
+      word-break: break-all;
+      color: var(--acc);
+    }
+    .param-table {
+      width: 100%;
+      margin: 1rem 0;
+      border-collapse: collapse;
+    }
+    .param-table th, .param-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .param-table th {
+      background: var(--s1);
+      font-weight: 600;
+      color: var(--acc);
+    }
+    .param-table td {
+      color: var(--muted);
+    }
+    .response {
+      background: var(--s1);
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border-left: 4px solid var(--acc);
+    }
+    code {
+      background: var(--s2);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: var(--mono);
+      color: var(--acc);
+    }
+    .example {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; }
+    
+    footer {
+      background: var(--s1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--muted);
+    }
+    
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <i class="fa-solid fa-bolt"></i> PrivaSearch
+      </a>
+      <a href="/" style="color: var(--muted); text-decoration: none;">← Back to Home</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h3>API Docs</h3>
+      <a href="#intro">Introduction</a>
+      <a href="#endpoints">Endpoints</a>
+      <a href="#search">Search</a>
+      <a href="#images">Images</a>
+      <a href="#videos">Videos</a>
+      <a href="#news">News</a>
+      <a href="#health">Health</a>
+      <a href="#examples">Examples</a>
+      <a href="#auth">Authentication</a>
+    </aside>
+
+    <main class="content">
+      <h1><i class="fa-solid fa-code"></i> API Documentation</h1>
+      <p>Build with PrivaSearch. Integrate private search into your applications.</p>
+
+      <h2 id="intro">Introduction</h2>
+      <p>The PrivaSearch API provides programmatic access to web, image, video, and news search. No authentication required for basic usage. Completely free and private.</p>
+      <p><strong>Base URL:</strong> <code>https://privasearch.render.com/api</code></p>
+
+      <h2 id="endpoints">Available Endpoints</h2>
+      <ul>
+        <li><code>GET /search</code> - Web search</li>
+        <li><code>GET /images</code> - Image search</li>
+        <li><code>GET /videos</code> - Video search</li>
+        <li><code>GET /news</code> - News search</li>
+        <li><code>GET /health</code> - Status check</li>
+      </ul>
+
+      <h2 id="search">Web Search</h2>
+      <div class="endpoint">
+        <div>
+          <span class="method get">GET</span>
+          <span class="endpoint-url">/api/search</span>
+        </div>
+        <p>Search the web across multiple search engines.</p>
+        
+        <h3>Query Parameters</h3>
+        <table class="param-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>q</code></td><td>string</td><td>Yes</td><td>Search query</td></tr>
+            <tr><td><code>engine</code></td><td>string</td><td>No</td><td>duckduckgo, bing, or google (default: duckduckgo)</td></tr>
+            <tr><td><code>ss</code></td><td>string</td><td>No</td><td>Safe search: off, moderate, strict (default: off)</td></tr>
+            <tr><td><code>sk</code></td><td>string</td><td>No</td><td>Serper API key (for Google results)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Response</h3>
+        <div class="response">{
+  "organic_results": [
+    {
+      "title": "Result title",
+      "link": "https://example.com",
+      "snippet": "Result description..."
+    }
+  ],
+  "provider": "DuckDuckGo"
+}</div>
+
+        <h3>Example</h3>
+        <div class="example">
+          <code>GET /api/search?q=python+programming&engine=duckduckgo</code>
+        </div>
+      </div>
+
+      <h2 id="images">Image Search</h2>
+      <div class="endpoint">
+        <div>
+          <span class="method get">GET</span>
+          <span class="endpoint-url">/api/images</span>
+        </div>
+        <p>Search for images with thumbnail URLs.</p>
+        
+        <h3>Query Parameters</h3>
+        <table class="param-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>q</code></td><td>string</td><td>Yes</td><td>Search query</td></tr>
+            <tr><td><code>ss</code></td><td>string</td><td>No</td><td>Safe search: off, moderate, strict (default: off)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Response</h3>
+        <div class="response">{
+  "organic_results": [
+    {
+      "title": "Image title",
+      "link": "https://example.com/image",
+      "imageUrl": "https://thumbnail.url"
+    }
+  ],
+  "provider": "Images (DDGS)"
+}</div>
+      </div>
+
+      <h2 id="videos">Video Search</h2>
+      <div class="endpoint">
+        <div>
+          <span class="method get">GET</span>
+          <span class="endpoint-url">/api/videos</span>
+        </div>
+        <p>Search for videos with metadata (duration, channel, thumbnail).</p>
+        
+        <h3>Query Parameters</h3>
+        <table class="param-table">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>q</code></td><td>string</td><td>Search query (required)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="news">News Search</h2>
+      <div class="endpoint">
+        <div>
+          <span class="method get">GET</span>
+          <span class="endpoint-url">/api/news</span>
+        </div>
+        <p>Search for latest news with dates and sources.</p>
+      </div>
+
+      <h2 id="health">Health Check</h2>
+      <div class="endpoint">
+        <div>
+          <span class="method get">GET</span>
+          <span class="endpoint-url">/health</span>
+        </div>
+        <p>Check if the API is online and responding.</p>
+        
+        <h3>Response</h3>
+        <div class="response">{
+  "status": "ok",
+  "timestamp": 1781922529.625
+}</div>
+      </div>
+
+      <h2 id="examples">Usage Examples</h2>
+      
+      <h3>JavaScript / Fetch</h3>
+      <div class="response">const query = 'machine learning';
+const response = await fetch(
+  `https://privasearch.render.com/api/search?q=${encodeURIComponent(query)}`
+);
+const data = await response.json();
+console.log(data.organic_results);</div>
+
+      <h3>Python / Requests</h3>
+      <div class="response">import requests
+
+query = 'climate change'
+response = requests.get(
+  'https://privasearch.render.com/api/search',
+  params={'q': query, 'ss': 'moderate'}
+)
+data = response.json()
+print(data['organic_results'])</div>
+
+      <h3>cURL</h3>
+      <div class="response">curl "https://privasearch.render.com/api/search?q=artificial+intelligence"</div>
+
+      <h2 id="auth">Authentication</h2>
+      <p><strong>No API key required!</strong> PrivaSearch API is completely open and free. We don't track API usage.</p>
+      <p>Optional: Use <code>sk</code> parameter with your Serper API key to access Google results.</p>
+
+      <h2>Rate Limiting</h2>
+      <p>No official rate limits. Please use responsibly. Excessive requests may be throttled.</p>
+
+      <h2>Support</h2>
+      <p>Questions? <a href="/" style="color: var(--acc)">Contact us</a> or check the main app documentation.</p>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 PrivaSearch • <a href="/" style="color: var(--acc)">Home</a> • API Docs</p>
+  </footer>
+</body>
+</html>

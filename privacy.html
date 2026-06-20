@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - PrivaSearch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0e27;
+      --s1: #12192f;
+      --s2: #1a2445;
+      --acc: #3b82f6;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --font: 'Inter', sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+    header {
+      background: rgba(10, 14, 39, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      sticky: top;
+      padding: 1rem 2rem;
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .logo i { color: var(--acc); font-size: 1.5rem; }
+    .header-content a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .header-content a:hover { color: var(--acc); }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--acc);
+    }
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    p {
+      margin-bottom: 1rem;
+      color: var(--muted);
+    }
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--muted);
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    code {
+      background: var(--s2);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'DM Mono', monospace;
+      color: var(--acc);
+    }
+    .highlight {
+      background: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--acc);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+    footer {
+      background: var(--s1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <i class="fa-solid fa-bolt"></i> PrivaSearch
+      </a>
+      <a href="/">← Back to Home</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1><i class="fa-solid fa-shield-halved" style="color: var(--acc)"></i> Privacy Policy</h1>
+    <p><em>Last updated: June 20, 2024</em></p>
+
+    <h2>Our Commitment to Your Privacy</h2>
+    <p>PrivaSearch is built on a simple principle: <strong>your privacy comes first</strong>. We do not track, store, or sell your search data. This privacy policy explains how we operate.</p>
+
+    <div class="highlight">
+      <strong>TL;DR:</strong> We don't track you. We don't store searches. We don't sell data. That's it.
+    </div>
+
+    <h2>What We Don't Collect</h2>
+    <ul>
+      <li><strong>Search Queries:</strong> Your search terms are never logged or stored</li>
+      <li><strong>IP Addresses:</strong> We don't record your IP address</li>
+      <li><strong>Cookies:</strong> We don't use tracking cookies</li>
+      <li><strong>User Profiles:</strong> We don't create user accounts (optional)</li>
+      <li><strong>Browsing History:</strong> We don't track where you go after searching</li>
+      <li><strong>Location Data:</strong> We don't collect your location</li>
+    </ul>
+
+    <h2>What We Do Collect (Minimally)</h2>
+    <h3>Server Logs</h3>
+    <p>Our server may log basic information for security and uptime monitoring:</p>
+    <ul>
+      <li>Timestamp of requests</li>
+      <li>Response codes (HTTP status)</li>
+      <li>Error logs (for debugging)</li>
+    </ul>
+    <p>These logs are automatically deleted after 7 days and never used for tracking or profiling.</p>
+
+    <h3>Optional Settings</h3>
+    <p>If you configure API keys (Serper, OpenRouter), we store them only in your browser's localStorage. We never see them.</p>
+
+    <h2>Third-Party Services</h2>
+    <p>PrivaSearch integrates with optional third-party search engines:</p>
+    <ul>
+      <li><strong>DuckDuckGo:</strong> No tracking, respects privacy</li>
+      <li><strong>Bing:</strong> May use tracking (your choice)</li>
+      <li><strong>Google (Serper):</strong> Requires API key, your choice</li>
+    </ul>
+    <p>When you search, your query goes to the search engine you select. Their privacy policies apply.</p>
+
+    <h2>AI Summaries</h2>
+    <p>AI-powered summaries use:</p>
+    <ul>
+      <li><strong>Pollinations (Free):</strong> Respects privacy, no logs</li>
+      <li><strong>OpenRouter (Optional):</strong> When you provide an API key</li>
+    </ul>
+
+    <h2>Local Storage</h2>
+    <p>PrivaSearch uses browser localStorage to store:</p>
+    <ul>
+      <li>Your UI preferences (dark mode, engine choice, etc.)</li>
+      <li>Optional API keys (never sent to our servers)</li>
+      <li>Chat history (only in your browser)</li>
+    </ul>
+    <p>This is all stored locally on your device. We never access it.</p>
+
+    <h2>Security</h2>
+    <p>All connections use HTTPS encryption. Your data in transit is always encrypted.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this policy occasionally. Significant changes will be announced on our website.</p>
+
+    <h2>Contact Us</h2>
+    <p>Questions about privacy? <a href="mailto:privacy@privasearch.dev" style="color: var(--acc)">Email us</a></p>
+
+    <h2>Our Philosophy</h2>
+    <div class="highlight">
+      <p><strong>We believe:</strong></p>
+      <ul style="margin: 0.5rem 0">
+        <li>Privacy is a fundamental right</li>
+        <li>You own your data, not us</li>
+        <li>Transparency builds trust</li>
+        <li>Simple tools work best</li>
+        <li>Privacy doesn't mean compromise</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 PrivaSearch • <a href="/" style="color: var(--acc)">Home</a> • Privacy First</p>
+  </footer>
+</body>
+</html>

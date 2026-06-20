@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrivaSearch - Private, Ad-Free Search Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0e27;
+      --s1: #12192f;
+      --s2: #1a2445;
+      --s3: #242f4a;
+      --acc: #3b82f6;
+      --acc2: #10b981;
+      --acc3: #f59e0b;
+      --acc4: #ef4444;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --muted2: #6b7280;
+      --font: 'Inter', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    /* Header */
+    header {
+      background: rgba(10, 14, 39, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo i { color: var(--acc); font-size: 1.8rem; }
+    nav { display: flex; gap: 2rem; align-items: center; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--acc); }
+    .cta-btn {
+      background: var(--acc);
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
+    
+    /* Hero */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff, var(--muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .btn-primary {
+      background: var(--acc);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--acc);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      border: 2px solid var(--acc);
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { background: rgba(59, 130, 246, 0.1); }
+    
+    /* Features Grid */
+    .features {
+      background: var(--s1);
+      padding: 4rem 2rem;
+      margin-top: 4rem;
+    }
+    .features-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .feature-card {
+      background: var(--s2);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      border-color: var(--acc);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--acc);
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    
+    /* Stats */
+    .stats {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat {
+      padding: 2rem;
+      background: var(--s2);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--acc);
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 4rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--s1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .footer-section a {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+    .footer-section a:hover {
+      color: var(--acc);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      text-align: center;
+      color: var(--muted2);
+      font-size: 0.9rem;
+    }
+    .socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .socials a {
+      width: 40px;
+      height: 40px;
+      background: var(--s2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--acc);
+      transition: all 0.3s;
+    }
+    .socials a:hover {
+      background: var(--acc);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; gap: 1rem; }
+      nav { flex-direction: column; gap: 1rem; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .hero-buttons { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <i class="fa-solid fa-bolt"></i> PrivaSearch
+      </a>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="api.html">API</a>
+        <a href="app.html" class="cta-btn"><i class="fa-solid fa-search"></i> Go to App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Private. Fast. Ad-Free.</h1>
+    <p>The search engine that respects your privacy. No tracking, no ads, no compromises.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="window.location.href='app.html'">
+        <i class="fa-solid fa-search"></i> Start Searching
+      </button>
+      <button class="btn-secondary" onclick="document.getElementById('features').scrollIntoView()">
+        Learn More
+      </button>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">0%</div>
+      <div class="stat-label">Tracking</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">0</div>
+      <div class="stat-label">Ads</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Privacy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">⚡</div>
+      <div class="stat-label">Fast Search</div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="features-content">
+      <h2 class="section-title">Powerful Features</h2>
+      <p class="section-subtitle">Everything you need for private, relevant search results</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>100% Private</h3>
+          <p>No tracking cookies, no data collection, no logging. Your searches are yours alone.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Lightning Fast</h3>
+          <p>Smart caching and optimized backend deliver results in milliseconds.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3>AI Summaries</h3>
+          <p>Get instant AI-powered summaries of search results to save time.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-image"></i></div>
+          <h3>Multi-Content</h3>
+          <p>Search the web, images, videos, and news in one place.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+          <h3>Smart Ranking</h3>
+          <p>Results ranked by relevance, not paid advertising.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-globe"></i></div>
+          <h3>Multi-Engine</h3>
+          <p>Choose between DuckDuckGo, Bing, or Google search algorithms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to Search Privately?</h2>
+    <p>Start using PrivaSearch today. No account needed, no tracking, completely free.</p>
+    <button class="btn-primary" onclick="window.location.href='app.html'" style="font-size: 1.1rem; padding: 1.2rem 2.5rem;">
+      <i class="fa-solid fa-arrow-right"></i> Launch the App
+    </button>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3><i class="fa-solid fa-bolt"></i> PrivaSearch</h3>
+        <p style="color: var(--muted); font-size: 0.9rem;">A private, ad-free search engine that puts you in control.</p>
+        <div class="socials">
+          <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Product</h3>
+        <a href="app.html">Search App</a>
+        <a href="#features">Features</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="api.html">API</a>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <a href="#">Documentation</a>
+        <a href="#">Help Center</a>
+        <a href="#">Blog</a>
+        <a href="#">Status</a>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Company</h3>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Terms</a>
+        <a href="#">Changelog</a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 PrivaSearch. Built with <i class="fa-solid fa-heart" style="color: var(--acc4)"></i> for privacy.</p>
+    </div>
+  </footer>
+</body>
+</html>
